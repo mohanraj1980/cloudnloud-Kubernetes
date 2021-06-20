@@ -30,6 +30,11 @@ now access master,node1,node2 public ip and check from outside browser
 kubectl delete -f https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_Training/main/class6-service/service/nodeport-twitter.yml
 
 **************************************************************************************************************************************
+Fir this load balancer exercise
+
+Goto Google cloud and create Google Kubernete Cluster Engine
+
+gcloud container clusters get-credentials cluster-1 --zone us-central1-c --project model-axe-311317
 
 kubectl apply -f https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_Training/main/class6-service/service/loadbalancer-facebook.yaml
 kubectl apply -f https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_Training/main/class6-service/service/loadbalancer-twitter.yml

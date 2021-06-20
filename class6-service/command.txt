@@ -1,0 +1,18 @@
+services
+
+https://github.com/FourTimes/Kubernetes/blob/master/service/loadbalancer-facebook.yaml
+https://github.com/FourTimes/Kubernetes/blob/master/service/loadbalancer-twiiter.yaml
+
+the above loadbalancer yaml will work only if you have the nodes in google cloud.because you will have the public ip.
+
+https://github.com/FourTimes/Kubernetes/blob/master/service/nodeport-facebook.yaml
+https://github.com/FourTimes/Kubernetes/blob/master/service/nodeport-twitter.yaml
+
+kubectl get pod,services -n twitter -o wide
+
+35.227.119.203:32001
+
+access like above from all node machine ip addresses.it should work from all client machine ip address.then the proxy cluster is working good.
+
+kubectl get services
+kubectl describe services

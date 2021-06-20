@@ -1,12 +1,12 @@
-https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_Training/main/class8-Deployments/deployments/1-deployment-facebook.yaml
-https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_Training/main/class8-Deployments/deployments/2-deployment-twitter.yml
+kubectl apply -f https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_Training/main/class8-Deployments/deployments/1-deployment-facebook.yaml
+kubectl apply -f https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_Training/main/class8-Deployments/deployments/2-deployment-twitter.yml
 
-kubectl get deploy
+kubectl get all -n facebook -o wide
 kubectl describe deploy
 
 kubectl get pod,service,replicaset,deploy -n facebook -o wide
 
-to understand please delete one pod 
+To understand please delete one pod 
 
 kubectl delete pod/nginx-74fcc59689-kn5j2 -n facebook
 

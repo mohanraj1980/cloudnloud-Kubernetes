@@ -10,8 +10,8 @@ kubectl edit deployment.apps/nginx -n facebook --> go and increase replicas coun
 kubectl rollout status deployment/nginx
 kubectl edit deploy/nginx
 kubectl apply -f 1-deployment-facebook.yaml
-kubectl rollout status deployment/nginx
-kubectl rollout history deploy/nginx
+kubectl rollout status deployment/nginx -n facebook
+kubectl rollout history deploy/nginx -n facebook
 
 change the new version of image in the existing 1-deployment-facebook.yaml --> 
 image: nginx:1.17.6 (goto hub.docker.com and get the 1.17.6 version from nginx image)
@@ -28,7 +28,7 @@ now we got 2 history revision (last one only we are now in currently standing)
 
 again goto 
 
-change the new version of image in the existing 1-deployment-facebook.yaml --> image: nginx:1.16.1 (goto hub.docker.com and get the 1.16.1 version from nginx image)
+change the new version of image in the existing 1-deployment-facebook.yaml --> image: nginx:1.21-perl (goto hub.docker.com and get the 1.20-alpine version from nginx image)
 
 kubectl rollout status deployment/nginx -n facebook
 kubectl rollout history deploy/nginx -n facebook

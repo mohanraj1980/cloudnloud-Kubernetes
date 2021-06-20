@@ -1,0 +1,69 @@
+1. create name space
+
+https://github.com/FourTimes/Kubernetes/blob/master/namespace/namespace.yaml
+
+2. create pods...
+
+https://github.com/FourTimes/Kubernetes/blob/master/pod/1-singlepod.yml
+
+kubectl apply -f 1-singlepod.yml
+kubectl get all -n twitter -l app=nginx
+
+kubectl exec -it pod/webserver bash -n twitter
+
+now you need to understand that lablels will help you to create exact report and find the particular resources
+
+
+https://github.com/FourTimes/Kubernetes/blob/master/pod/2-multipods.yml
+
+kubectl get all -n facebook -l app=httpd
+
+kubectl exec -it pod/multicontainer-pods bash -n facebook
+
+kubectl exec -it pod/multicontainer-pods bash -n facebook -c web
+kubectl exec -it pod/multicontainer-pods bash -n facebook -c db
+
+
+https://github.com/bvijaycom/jino-kubernetes/blob/master/pod/2.1-duplicate-port-multipod.yaml
+
+kubectl apply -f 2.1-duplicate-port-multipod.yaml
+
+same port it wont work ---
+
+kubectl describe pod/multicontainer-pods -n facebook
+
+in this only one container will run andother one will give you error
+
+kubectl get events (yuou wont get anything)
+kubectl logs pod/multicontainer-pods -n twitter
+
+kubectl logs pod/multicontainer-pods -n twitter -c httpd2
+kubectl logs pod/multicontainer-pods -n twitter -c httpd1
+
+-----------------
+kubectl create ns twitter
+https://github.com/FourTimes/Kubernetes/blob/master/pod/3-storage.yml
+kubectl apply -f 3-storage.yml
+
+kubectl get pods -n twitter -o wide
+
+kubectl describe pod/database -n twitter
+
+
+check the directory has been created to that node
+
+https://github.com/bvijaycom/jino-kubernetes/blob/master/pod/4-multistorage.yml
+
+kubectl exec -it pod/db bash -n vijay -c web
+kubectl exec -it pod/db bash -n vijay -c db
+
+
+https://github.com/FourTimes/Kubernetes/blob/master/pod/5-full.yaml
+********************************************************************************************
+find out the below yaml file is deployed to which name space
+
+https://github.com/FourTimes/Kubernetes/blob/master/pod/6-example.yml
+
+kubectl get pod
+kubectl describe pod <pod name>
+********************************************************************************************

@@ -1,13 +1,40 @@
 services
 
-https://github.com/FourTimes/Kubernetes/blob/master/service/loadbalancer-facebook.yaml
-https://github.com/FourTimes/Kubernetes/blob/master/service/loadbalancer-twiiter.yaml
+kubectl apply -f https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_Training/main/class6-service/service/nodeport-facebook.yaml
 
-the above loadbalancer yaml will work only if you have the nodes in google cloud.because you will have the public ip.
+kubectl describe pod/webserver -n facebook
 
-https://github.com/FourTimes/Kubernetes/blob/master/service/nodeport-facebook.yaml
-https://github.com/FourTimes/Kubernetes/blob/master/service/nodeport-twitter.yaml
+kubectl get all -n facebook -o wide
 
+now access master,node1,node2 public ip and check from outside browser
+
+<Master Node Public IP>:32001
+<Worker Node1 Public IP>:32001
+<Worker Node2 Public IP>:32001
+
+kubectl delete -f https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_Training/main/class6-service/service/nodeport-facebook.yaml
+*************************************************************************************************************************************
+
+kubectl apply -f https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_Training/main/class6-service/service/nodeport-twitter.yml
+
+kubectl describe pod/webserver -n twitter
+
+kubectl get all -n twitter -o wide
+
+now access master,node1,node2 public ip and check from outside browser
+
+<Master Node Public IP>:32001
+<Worker Node1 Public IP>:32001
+<Worker Node2 Public IP>:32001
+
+kubectl delete -f https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_Training/main/class6-service/service/nodeport-twitter.yml
+
+**************************************************************************************************************************************
+
+kubectl apply -f https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_Training/main/class6-service/service/loadbalancer-facebook.yaml
+kubectl apply -f https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_Training/main/class6-service/service/loadbalancer-twitter.yml
+
+kubectl get all -n twitter -o wide
 kubectl get pod,services -n twitter -o wide
 
 35.227.119.203:32001

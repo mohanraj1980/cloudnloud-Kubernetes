@@ -1,6 +1,0 @@
-https://github.com/bvijaycom/jino-kubernetes/blob/master/init/node-redis/node.yml
-first deploy this and run kubectl get all command
-you will see init is waiting.coz the dependency is not yet launched or stopped
-https://github.com/bvijaycom/jino-kubernetes/blob/master/init/node-redis/redis.yml
-
-if we deploy redis.yaml (kubectl apply -f redis.yaml then you run the kubectl get all command you will now see running state)

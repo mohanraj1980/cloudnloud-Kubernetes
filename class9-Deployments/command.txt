@@ -17,4 +17,4 @@ then
 run the below command again
 kubectl get pod,service,replicaset,deploy -n facebook -o wide
 
-rolling update --> https://github.com/bvijaycom/jino-kubernetes/blob/master/deployments/commands.txt
+rolling update --> https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_Training/main/class9-Deployments/deployments/commands.txt

@@ -4,7 +4,7 @@ kind: Pod
 metadata:
   name: first-pod
   labels:
-    app: jino
+    app: cloudnloud
 spec:
   containers:
     - name: web-server

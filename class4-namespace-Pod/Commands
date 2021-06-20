@@ -97,6 +97,9 @@ kubectl apply -f https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_T
 
 kubectl create ns cloudnloud
 
-kubectl get pod
-kubectl describe pod <pod name>
+kubectl get all -n cloudnloud
+kubectl get pod/first-pod -n cloudnloud
+kubectl describe pod first-pod -n cloudnloud
+
+kubectl delete -f https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_Training/main/class4-namespace-Pod/pod/6-example.yml -n cloudnloud
 ********************************************************************************************

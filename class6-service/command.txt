@@ -30,7 +30,7 @@ now access master,node1,node2 public ip and check from outside browser
 kubectl delete -f https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_Training/main/class6-service/service/nodeport-twitter.yml
 
 **************************************************************************************************************************************
-Fir this load balancer exercise
+For this load balancer exercise
 
 Goto Google cloud and create Google Kubernete Cluster Engine
 

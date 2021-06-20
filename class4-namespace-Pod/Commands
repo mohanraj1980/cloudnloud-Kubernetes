@@ -1,4 +1,14 @@
+kubectl get ns
+
+kubectl get all -n default
+
+kubectl get all -n kube-system 
+
+kubectl get all -n kube-system -o wide
+
 1. create name space
+
+kubectl create ns <namespace name>
 
 https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_Training/main/class4-namespace-Pod/namespace/namespace.yaml
 

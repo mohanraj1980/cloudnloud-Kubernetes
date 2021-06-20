@@ -1,5 +1,5 @@
-https://github.com/FourTimes/Kubernetes/blob/master/deployments/1-deployment-facebook.yaml
-https://github.com/FourTimes/Kubernetes/blob/master/deployments/2-deployment-twitter.yml
+https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_Training/main/class8-Deployments/deployments/1-deployment-facebook.yaml
+https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_Training/main/class8-Deployments/deployments/2-deployment-twitter.yml
 
 kubectl get deploy
 kubectl describe deploy

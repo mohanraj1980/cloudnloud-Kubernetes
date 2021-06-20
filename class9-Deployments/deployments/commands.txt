@@ -13,7 +13,13 @@ kubectl apply -f 1-deployment-facebook.yaml
 kubectl rollout status deployment/nginx
 kubectl rollout history deploy/nginx
 
-change the new version of image in the existing 1-deployment-facebook.yaml --> image: nginx:1.17.6 (goto hub.docker.com and get the 1.17.6 version from nginx image)
+change the new version of image in the existing 1-deployment-facebook.yaml --> 
+image: nginx:1.17.6 (goto hub.docker.com and get the 1.17.6 version from nginx image)
+from hub.docker.com you note the available image tags like below from nginx image.
+
+1.20.1
+1.21-perl
+1.20-alpine
 
 kubectl rollout status deployment/nginx -n facebook
 kubectl rollout history deploy/nginx -n facebook

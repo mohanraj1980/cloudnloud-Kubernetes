@@ -1,0 +1,14 @@
+Replica set
+
+https://github.com/FourTimes/Kubernetes/blob/master/replicaset/1-singlereplica.yml
+https://github.com/FourTimes/Kubernetes/blob/master/replicaset/2-singlepod-singlereplica.yml
+https://github.com/FourTimes/Kubernetes/blob/master/replicaset/3-multireplica.yaml
+https://github.com/FourTimes/Kubernetes/blob/master/replicaset/4-singlepod-singlereplica-error.yaml
+https://github.com/FourTimes/Kubernetes/blob/master/replicaset/5-replica-nodeport.yml
+
+kubectl get replicas
+kubectl describe replicas
+
+kubectl get pod,service,replicaset -n facebook -o wide
+
+labels --> service -- selector , replica -- match ---> should be same

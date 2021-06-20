@@ -90,3 +90,5 @@ now from node1 and node2 join to the k8s cluster
 kubectl get nodes (this command output must show all nodes are ready status)
 
 **********************************************************************************************
+
+watch -n 1 kubectl get nodes

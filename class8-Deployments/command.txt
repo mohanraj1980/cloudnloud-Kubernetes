@@ -1,0 +1,18 @@
+https://github.com/FourTimes/Kubernetes/blob/master/deployments/1-deployment-facebook.yaml
+https://github.com/FourTimes/Kubernetes/blob/master/deployments/2-deployment-twitter.yml
+
+kubectl get deploy
+kubectl describe deploy
+
+kubectl get pod,service,replicaset,deploy -n facebook -o wide
+
+to understand please delete one pod 
+
+kubectl delete pod/nginx-74fcc59689-kn5j2 -n facebook
+
+then 
+
+run the below command again
+kubectl get pod,service,replicaset,deploy -n facebook -o wide
+
+rolling update --> https://github.com/bvijaycom/jino-kubernetes/blob/master/deployments/commands.txt

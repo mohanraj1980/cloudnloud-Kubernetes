@@ -12,9 +12,9 @@ kubectl apply -f https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_T
 
 kubectl get all
 
-see now daemonset is 3 and running in each client node.because daemonset is mandatory for each worker or client node.
+see now daemonset is 2 and running in each worker/client node.because daemonset is mandatory for each worker or client node.
 
-We have 1 master node 2 worker node now.So create one more worker node and  only 4 machine including server.
+We have 1 master node 2 worker node now.So create one more worker node (3rd worker node).
 
 Now you need a kubernetes cluster join command with secret.so go to kube master node and run the below command.
 
@@ -39,7 +39,7 @@ you  must see all nodes are ready state.
 
 in master run kubectl get all
 
-now you see daemonset will 4 previously it was (1 master - 1 daemonset is running + 1 node - 1 daemonset is running + 1 node - 1 daemonset is running).
+now you see daemonset will 3 previously it was 2 (1 node - 1 daemonset is running + 1 node - 1 daemonset + 1 new node - 1 daemonset is running).
 
 kubectl exec -ti pod/nginx-6jlrm bash (loging into one of the pod)
 

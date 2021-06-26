@@ -7,12 +7,12 @@ metadata:
 spec:
   containers:
   - name: node-server
-    image: jjino/node-redis:v1.0
+    image: cloudnloud/node-redis:v1.0
     ports:
     - containerPort: 8080
   initContainers:
   - name: init-myservice
-    image: jjino/test:latest
+    image: cloudnloud/test:latest
     args:
     - sh
     - -c

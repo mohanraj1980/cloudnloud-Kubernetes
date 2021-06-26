@@ -1,3 +1,7 @@
+Daemonset
+
+DaemonSets can improve the performance of a Kubernetes cluster by distributing maintenance tasks and support services via deploying Pods across all nodes. They are well suited for long-running services like monitoring or log collectio
+
 You have existing 3 node kubernetes setup (1 master node & 2 worker node)
 From master run this command and ensure all nodess are ready state
 

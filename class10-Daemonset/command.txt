@@ -1,4 +1,14 @@
-https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_Training/main/class10-Daemonset/daemonset-nginx.yaml
+You have existing 3 node kubernetes setup (1 master node & 2 worker node)
+From master run this command and ensure all nodess are ready state
+
+kubectl get nodes
+
+If all nodes are ready state then we can start the below daemonset handson lab.
+
+goto mater node and run the below yaml file
+
+
+kubectl apply -f https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_Training/main/class10-Daemonset/daemonset-nginx.yaml
 
 kubectl get all
 

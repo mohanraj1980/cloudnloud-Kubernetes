@@ -1,20 +1,37 @@
-https://github.com/bvijaycom/jino-kubernetes/blob/master/daemonset-nginx.yaml
+https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_Training/main/class10-Daemonset/daemonset-nginx.yaml
 
 kubectl get all
 
-see now daemonset is 3 running in each client node.because daemonset is mandatory for each worker or client node.
+see now daemonset is 3 and running in each client node.because daemonset is mandatory for each worker or client node.
 
-i have only 4 machine including server.so i am doing this test in node3.
+We have 1 master node 2 worker node now.So create one more worker node and  only 4 machine including server.
 
-kubeadm reset (in node3 give it)
+Now you need a kubernetes cluster join command with secret.so go to kube master node and run the below command.
+
+kubeadm token create --print-join-command
+
+(This command will help you to add more worker nodes whenever you want to add to KUBE cluster.Whenevr you want to add you need the kubeadm join command with new key and new hash key algorithm.Thats is where this command will help.However this command you must run only in KUBE master server.You shouldnt run from any worker nodes)
+(you get some output from this command.
+
+Now you have command with token to join in the exiting kube cluster.Login to 4th new worker node and run that kubeadm join command.
+
+Note: before you join new worker node in master run the below command
+
+watch -n 1 kubectl get all
+
+go to master node and run the below command
+
+kubectl get nodes
+
+you  must see all nodes are ready state.
+
+
 
 in master run kubectl get all
 
-now you see only daemonset will 2.
+now you see daemonset will 4 previously it was (1 master - 1 daemonset is running + 1 node - 1 daemonset is running + 1 node - 1 daemonset is running).
 
 kubectl exec -ti pod/nginx-6jlrm bash (loging into one of the pod)
-
-
 
 once i configured automatically if i add any linux machine then in that linux machine this ngnix also will be deployed
 

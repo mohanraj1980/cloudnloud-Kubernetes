@@ -16,6 +16,6 @@ first deploy this and run below command
 
 you will see init is waiting.coz the dependency is not yet launched or stopped
 
-kubectl apply -f https://github.com/cloudnloud/Kubernetes_Admin_Training/blob/main/class11-initcontainers/node-redis/redis.yml -n app1
+kubectl apply -f https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_Training/main/class11-initcontainers/node-redis/redis.yml -n app1
 
 if we deploy redis.yaml (kubectl apply -f redis.yaml then you run the kubectl get all command you will now see running state)

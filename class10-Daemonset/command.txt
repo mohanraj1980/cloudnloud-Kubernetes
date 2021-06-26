@@ -25,7 +25,11 @@ kubeadm token create --print-join-command
 
 Now you have command with token to join in the exiting kube cluster.Login to 4th new worker node and run that kubeadm join command.
 
-Note: before you join new worker node in master run the below command
+Note: 3rd new worker need tohave all packages installed as we explained in class 3 k8s installation class.
+
+https://github.com/cloudnloud/Kubernetes_Admin_Training/tree/main/class3-k8s-installation
+
+before you join new worker node in master run the below command
 
 watch -n 1 kubectl get all
 

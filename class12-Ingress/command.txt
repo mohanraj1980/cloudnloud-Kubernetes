@@ -4,18 +4,8 @@ kubectl get nodes
 
 the above command output should show all nodes are ready state.
 
-create new namespace called app1
 
-kubectl create ns app1
 
-run the below command in one separate putty window in master server
+Introduction
 
-kubectl apply -f https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_Training/main/class11-initcontainers/node-redis/node.yml -n app1
-
-first deploy this and run below command
-
-you will see init is waiting.coz the dependency is not yet launched or stopped
-
-kubectl apply -f https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_Training/main/class11-initcontainers/node-redis/redis.yml -n app1
-
-if we deploy redis.yaml (kubectl apply -f redis.yaml then you run the kubectl get all command you will now see running state)
+Kubernetes Ingresses offer you a flexible way of routing traffic from beyond your cluster to internal Kubernetes Services. Ingress Resources are objects in Kubernetes that define rules for routing HTTP and HTTPS traffic to Services. For these to work, an Ingress Controller must be present; its role is to implement the rules by accepting traffic (most likely via a Load Balancer) and routing it to the appropriate Services. Most Ingress Controllers use only one global Load Balancer for all Ingresses, which is more efficient than creating a Load Balancer per every Service you wish to expose.

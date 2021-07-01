@@ -8,97 +8,74 @@ For these to work, an Ingress Controller must be present; its role is to impleme
 Most Ingress Controllers use only one global Load Balancer for all Ingresses, which is more efficient than creating a Load Balancer per every Service you wish to expose.
 
 
-gcloud config set project smooth-ocean-179719
-gcloud config set compute/zone us-central1-a
-
-
 Prerequisite
 Kubernetes Cluster up and running with master and node or GKE or EKS or any other type of k8s setup.
 Here we are using GCP as a cloud provider for LoadBalancer Service. In case if you do not want to use LoadBalancer you can skip the steps.
 
-Installing Helm
-1- Download script
 
-curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh
-2- Helm client install
+*************************************************************************************************************************
+deploy hello-kubernetes-first.yaml
 
-chmod 700 get_helm.sh
-./get_helm.sh
-3- Init Helm
+kubectl apply -f https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_Training/main/class14-ingress/hello-kubernetes-first.yaml
 
-helm init
-Installing Tiller
-1- Run the following commands to install the server-side tiller to the Kubernetes cluster with RBAC enabled
+kubectl get all -o wide
 
-kubectl create serviceaccount --namespace kube-system tiller
-2- Create a tiller Service Account
+To verify the Service’s creation, run the following command:
 
-kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
-kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}' 
-3- Initialize Helm with newly-created service account
+kubectl get service hello-kubernetes-first
 
-helm init --service-account tiller --upgrade
-4- Checking tiller running
 
-kubectl get deployments -n kube-system
-Deploy an application in Kubernetes
-1- Deploying simple Hello-app
+You’ll find that the newly created Service has a ClusterIP assigned, which means that it is working properly. All traffic sent to it will be forwarded to the selected Deployment on port 8080. Now that you have deployed the first variant of the hello-kubernetes app, you’ll work on the second one.
 
-kubectl create deployment hello-app --image=gcr.io/google-samples/hello-app:1.0
-2- Expose the hello-app Deployment as a Service
+**********************************************************************************************************
+deploy hello-kubernetes-second.yaml
 
-kubectl expose deployment hello-app  --port=8080
-Deploying the NGINX Ingress Controller via Helm
-The Kubernetes platform gives administrators flexibility when it comes to Ingress Controllers. You can integrate your own rather than having to work with your provider’s built-in offering. The NGINX controller must be exposed for external access. This is done using Service type: LoadBalancer on the NGINX controller service. On Kubernetes Engine, this creates a Google Cloud Network (TCP/IP) Load Balancer with NGINX controller Service as a backend. Google Cloud also creates the appropriate firewall rules within the Service’s VPC to allow web HTTP(S) traffic to the load balancer frontend IP address.
+kubectl apply -f https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_Training/main/class14-ingress/hello-kubernetes-second.yaml
 
-1- Deploy NGINX Ingress Controller
+kubectl get all -o wide
 
-helm install --name nginx-ingress stable/nginx-ingress --set rbac.create=true
+To verify the Service’s creation, run the following command:
 
-2- Check Ingress Controller
+kubectl get service hello-kubernetes-second
 
-kubectl get service nginx-ingress-controller
-Wait for few moments while GCP LB get deployed and it should show the external IP img
+********************************************************************************************************************
 
-Configure Ingress Resource
-
-1- Create a simple Ingress Resource file which uses the NGINX Ingress Controller.
-This Ingress Resource defines an inbound L7 rule for path /hello to service hello-app on port 8080.
-
-vim ingress-resource.yml
-
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: ingress-resource
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-spec:
-  rules:
-  - host: vijayloud.com
-    http:
-      paths:
-      - path: /hello
-        backend:
-          serviceName: hello-app
-          servicePort: 8080
-  - host: vijayloud1.com
-    http:
-      paths:
-      - path: /hello1
-        backend:
-          serviceName: hello-app
-          servicePort: 8080
-          
-          
+ Installing the Kubernetes Nginx Ingress Controller
  
-2- Apply Rules to Kubernetes
+ To install the Nginx Ingress Controller to your cluster, you’ll first need to add its repository to Helm by running:
 
-kubectl apply -f ingress-resource.yml
-3- Check in backend
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 
-kubectl get ingress ingress-resource
-4- Check in browser
 
-http://external-ip-of-ingress-controller/hello
+Update to let Helm know what it contains:
+
+helm repo update
+
+Finally, run the following command to install the Nginx ingress:
+
+
+helm install nginx-ingress ingress-nginx/ingress-nginx --set controller.publishService.enabled=true
+
+This command installs the Nginx Ingress Controller from the stable charts repository, names the Helm release nginx-ingress, and sets the publishService parameter to true.
+
+
+You can watch the Load Balancer become available by running:
+
+kubectl --namespace default get services -o wide -w nginx-ingress-ingress-nginx-controller
+
+********************************************************************************************************
+
+Exposing the App Using an Ingress
+
+kubectl apply -f https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_Training/main/class14-ingress/hello-kubernetes-ingress.yaml
+
+You define an Ingress Resource with the name hello-kubernetes-ingress. Then, you specify two host rules, so that hw1.your_domain is routed to the hello-kubernetes-first Service, and hw2.your_domain is routed to the Service from the second deployment (hello-kubernetes-second).
+
+kubectl get all -o wide
+
+34.69.167.205	www.example.com
+34.69.167.205	hw1.example.com
+34.69.167.205	hw2.example.com
+
+access in broswer now you can easily understand ingress
+

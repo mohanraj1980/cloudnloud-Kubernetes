@@ -32,11 +32,6 @@ tree project1/
 This will give good start on the proper folder structure if you forgot.
 
 
-if you want to test the above project to examine a chart for possible issues
-
-helm lint project1/
-
-
 Add a Chart Repository
 
 helm repo add stable https://charts.helm.sh/stable

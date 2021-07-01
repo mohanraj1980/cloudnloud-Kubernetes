@@ -1,16 +1,136 @@
-You must have 1 master and 2 worker nodes setup.
+Create Kubernetes Cluster in your cloud environment (in Google cloud GKE,or in AWS EKS or in AZURE AKS)
+
+Post cluster creation run the following command and ensure your k8s cluster is fine.
 
 kubectl get nodes
 
-the above command output should show all nodes are ready state.
+Step1: Install helm
+Step2: Explore Helm Commands
+Step 3: Install Helm Chart
+Step 4: Search and Install helm repo/charts
+Step 5: Deploy Helm Charts
+Step 6: Test Post Deployment - project 1
+Step 7: Test Post Deployment - project 2
+
+**************************************************************************************************************************
+Step1: Install helm
+
+wget https://get.helm.sh/helm-v3.4.1-linux-amd64.tar.gz
+tar xvf helm-v3.4.1-linux-amd64.tar.gz
+sudo mv linux-amd64/helm /usr/local/bin
+helm version
+
+apt install tree -y
+**************************************************************************************************************************
+Step2: Explore Helm Commands
+
+helm create project1
+
+tree project1/
+
+
+This will give good start on the proper folder structure if you forgot.
+
+
+if you want to test the above project to examine a chart for possible issues
+
+helm lint project1/
+
+
+Add a Chart Repository
+
+helm repo add stable https://charts.helm.sh/stable
+
+
+But what does that stable repository contain? List out the contents with the command:
+
+helm search repo stable
+
+**************************************************************************************************************************
+Step 3: Install Helm Chart
+
+Installing a Chart
+
+Let’s install a chart from the Helm stable repository. First let’s update everything with the command:
+
+Installing a Chart
+Let’s install a chart from the Helm stable repository. First let’s update everything with the command:
+
+helm repo update
+
+**************************************************************************************************************************
+Step 4: Search and Install helm repo/charts
+
+helm search command
+
+helm search hub 
+
+searches the Artifact Hub, which lists helm charts from dozens of different repositories.
+
+helm search repo 
+
+searches the repositories that you have added to your local helm client (with helm repo add). This search is done over local data, and no public network connection is needed.
+
+
+helm repo add
+
+helm search hub httpd
+
+https://artifacthub.io/packages/helm/myweb/myweb  --> open the link and click install
+
+
+helm repo add myweb https://raw.githubusercontent.com/MasterCloudApps/3.2.Contenedores-y-orquestadores/master/k8s/helm/ejem3/charts/
+
+helm install my-myweb myweb/myweb --version 0.0.5
+
+helm list
+
+helm uninstall my-myweb
+
+**************************************************************************************************************************
+Step 5: Deploy Helm Charts 
+
+
+Now deploy the chart with LoadBalancer Type
+
+Get chart features:
+
+helm show chart stable/nginx-ingress
+
+
+Install the chart using the helm install command.
+
+helm install nginx-ingress stable/nginx-ingress
+
+Confirm installation:
+
+helm ls
+
+now run the below command 
+
+kubectl get all -o wide
+
+get the public ip (loadbalancer)
+
+**************************************************************************************************************************
+Step 6: Test Post Deployment - project 1
+
+http://www.example.com/healthz
+
+(sometimes example.com you add the public ip in your host file)
+[https://github.com/kubernetes/ingress-nginx/blob/master/charts/ingress-nginx/values.yaml]
+search path ?
 
 
 
-Introduction
+To uninstall a release, use the helm uninstall command:
 
-Kubernetes Ingresses offer you a flexible way of routing traffic from beyond your cluster to internal Kubernetes Services. 
-Ingress Resources are objects in Kubernetes that define rules for routing HTTP and HTTPS traffic to Services. 
-For these to work, an Ingress Controller must be present; its role is to implement the rules by accepting traffic 
-(most likely via a Load Balancer) and routing it to the appropriate Services. 
+helm uninstall nginx-ingress
 
-Most Ingress Controllers use only one global Load Balancer for all Ingresses, which is more efficient than creating a Load Balancer per every Service you wish to expose.
+
+
+**************************************************************************************************************************
+Step 7: Test Post Deployment - Project 2
+Below example if for the installation of DokuWiki on Kubernetes using Helm.
+
+helm install dokuwiki stable/dokuwiki 

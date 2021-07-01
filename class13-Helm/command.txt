@@ -128,4 +128,8 @@ helm uninstall nginx-ingress
 Step 7: Test Post Deployment - Project 2
 Below example if for the installation of DokuWiki on Kubernetes using Helm.
 
-helm install dokuwiki stable/dokuwiki 
+kubectl create ns cnl
+
+helm install dokuwiki stable/dokuwiki
+
+helm uninstall dokuwiki -n cnl

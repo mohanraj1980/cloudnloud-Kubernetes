@@ -1,4 +1,4 @@
-Before start this excercise,you must have running CENTOS 7 linux machine.
+Before start this excercise,you must have running k8s cluster in AWS cloud or Google cloud or Azure Cloud.
 
 Step 1:  Download sample application
 Step 2:  Deploy and use Docker Container Registry
@@ -11,7 +11,7 @@ Step 6: Update an application in Kubernetes Service
 
 Step 1: Download sample application
 
-yum install git tree -y
+apt install tree -y
 
 git clone https://github.com/Azure-Samples/azure-voting-app-redis.git
 
@@ -88,8 +88,6 @@ kubectl scale --replicas=4 deployment/azure-vote-front
 *******************************************************************************************************************
 
 Step 5: Autoscale pods
-
-these days k8s cluster is above 1.10 only.
 
 now open 3 putty window and do the following
 

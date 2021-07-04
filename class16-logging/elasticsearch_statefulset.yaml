@@ -75,8 +75,3 @@ spec:
       resources:
         requests:
           storage: 100Gi
-      volumes:
-      - name: data
-        hostPath:
-         path: /usr/share/elasticsearch/data
-         type: DirectoryOrCreate

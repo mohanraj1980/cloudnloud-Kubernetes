@@ -1,0 +1,27 @@
+Once you’ve created the kube-logging.yaml Namespace object file, create the Namespace using kubectl create with the -f filename flag:
+
+kubectl apply -f https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_Training/main/class16-logging/kube-logging.yaml
+
+kubectl get ns
+
+Step 2 — Creating the Elasticsearch StatefulSet
+
+kubectl apply -f https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_Training/main/class16-logging/elasticsearch_svc.yaml
+
+kubectl get services --namespace=kube-logging
+
+
+Creating the StatefulSet
+
+create elasticsearch_statefulset.yaml file
+
+
+Once you’re satisfied with your Elasticsearch configuration, save and close the file.
+
+Now, deploy the StatefulSet using kubectl:
+
+kubectl apply -f https://raw.githubusercontent.com/cloudnloud/Kubernetes_Admin_Training/main/class16-logging/elasticsearch_statefulset.yaml
+
+You can monitor the StatefulSet as it is rolled out using kubectl rollout status:
+
+kubectl rollout status sts/es-cluster --namespace=kube-logging

@@ -13,7 +13,6 @@ spec:
     metadata:
       labels:
         app: elasticsearch
-. . .
     spec:
       containers:
       - name: elasticsearch
@@ -46,7 +45,6 @@ spec:
             value: "es-cluster-0,es-cluster-1,es-cluster-2"
           - name: ES_JAVA_OPTS
             value: "-Xms512m -Xmx512m"
-. . .
       initContainers:
       - name: fix-permissions
         image: busybox
@@ -66,7 +64,6 @@ spec:
         command: ["sh", "-c", "ulimit -n 65536"]
         securityContext:
           privileged: true
-. . .
   volumeClaimTemplates:
   - metadata:
       name: data

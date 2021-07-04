@@ -32,6 +32,11 @@ spec:
         volumeMounts:
         - name: data
           mountPath: /usr/share/elasticsearch/data
+      volumes:
+      - name: data
+        hostPath:
+         path: /usr/share/elasticsearch/data
+         type: DirectoryOrCreate
         env:
           - name: cluster.name
             value: k8s-logs
